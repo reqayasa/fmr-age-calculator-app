@@ -5,33 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="/dist/style.css">
+  <script defer src="/dist/script.js"></script>
   <title>Frontend Mentor | Age calculator app</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
+  <!-- <style>
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  </style> -->
 </head>
 <body>
-
-  Day
-  DD
-
-  Month
-  MM
-
-  Year
-  YYYY
-
-  -- years
-  -- months
-  -- days
+  <h1 class="visually-hidden">Age Calculator App</h1>
+  <div class="container">
+    <main class="card">
+      <div class="input">
+        <form action="/" aria-label="input your birth date">
+          <div class="input-group">
+            <label for="day">DAY</label>
+            <input type="text" id="day" name="day" placeholder="DD" value="" aria-label="input your birth day">
+          </div>
+          <div class="input-group">
+            <label for="month">MONTH</label>
+            <input type="text" id="month" name="month" placeholder="MM" value="" aria-label="input your birth month">
+          </div>
+          <div class="input-group">
+            <label for="year">YEAR</label>
+            <input type="text" id="year" name="year" placeholder="YY" value="" aria-label="input your birth year">
+          </div>
+        </form>  
+      </div>
+      <div class="divider">
+        <div class="icon-arrow">
+          <img src="/assets/images/icon-arrow.svg" alt="">    
+        </div>
+      </div>
+      <div class="output">
+        <div class="output-group">
+          <p><span id="output-years">--</span> years</p>
+          <p><span id="output-months">--</span> months</p>
+          <p><span id="output-days">--</span> days</p>
+        </div> 
+      </div>
+    </main>
+  </div>
   
-  <div class="attribution">
+  <!-- <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
-  </div>
+  </div> -->
 </body>
 </html>
