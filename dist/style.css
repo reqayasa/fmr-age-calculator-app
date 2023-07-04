@@ -2,22 +2,31 @@
     font-family: 'Poppins';
     src: url('/assets/fonts/Poppins-Regular.ttf');
     font-weight: 400;
+    font-style: normal;
 }
 @font-face {
     font-family: 'Poppins';
-    src: url('/assets/fonts/Poppins-Regular.ttf');
+    src: url('/assets/fonts/Poppins-Italic.ttf');
     font-weight: 400;
+    font-style: italic;
 }
 @font-face {
     font-family: 'Poppins';
-    src: url('/assets/fonts/Poppins-Regular.ttf');
-    font-weight: 400;
+    src: url('/assets/fonts/Poppins-Bold.ttf');
+    font-weight: 700;
+    font-style: normal;
 }
 @font-face {
     font-family: 'Poppins';
-    src: url('/assets/fonts/Poppins-Regular.ttf');
-    font-weight: 400;
+    src: url('/assets/fonts/Poppins-BoldItalic.ttf');
+    font-weight: 700;
+    font-style: italic;
 }
+/* @font-face {
+    font-family: 'Poppins';
+    src: url('/assets/fonts/Poppins-ExtraBold.ttf');
+    font-weight: 900;
+} */
 :root {
     /* ## Colors */
     /* ### Primary */
@@ -41,7 +50,7 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 /* Remove default margin */
@@ -55,39 +64,39 @@ figure,
 blockquote,
 dl,
 dd {
-  margin: 0;
-  font-family: 'Poppins';
+    margin: 0;
+    font-family: 'Poppins';
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
 ul[role='list'],
 ol[role='list'] {
-  list-style: none;
+    list-style: none;
 }
 
 /* Set core root defaults */
 html:focus-within {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 /* Set core body defaults */
 body {
-  min-height: 100vh;
-  text-rendering: optimizeSpeed;
-  line-height: 1.5;
-  background-color: var(--off-white);
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    background-color: var(--off-white);
 }
 
 /* A elements that don't have a class get default styles */
 a:not([class]) {
-  text-decoration-skip-ink: auto;
+    text-decoration-skip-ink: auto;
 }
 
 /* Make images easier to work with */
 img,
 picture {
-  max-width: 100%;
-  display: block;
+    max-width: 100%;
+    display: block;
 }
 
 /* Inherit fonts for inputs and buttons */
@@ -95,24 +104,25 @@ input,
 button,
 textarea,
 select {
-  font: inherit;
+    font: inherit;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
-  html:focus-within {
-   scroll-behavior: auto;
-  }
-  
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+    html:focus-within {
+    scroll-behavior: auto;
+    }
+    
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
   }
 }
+
 
 .visually-hidden {
     position: absolute;
@@ -150,8 +160,6 @@ select {
     font-weight: 800;
     display: flex;
     flex-direction: column;
-    width: 9.9375rem;
-    height: 4.4375rem;
     margin-right: 2rem;
 }
 
@@ -165,21 +173,90 @@ select {
     font-size: 2rem;
     padding-left: 1rem;
     border: 1px solid var(--light-grey);
+    color: var(--off-black);
     border-radius: 0.4375rem;
+    width: 9.9375rem;
+    height: 4.4375rem;
 }
 
-.divider .icon-arrow {
+.input .input-group input:active {
+    border-color: var(--purple);
+    outline:0;
+}
+
+.input .input-group input:hover {
+    border-color: var(--purple);
+    outline:0;
+}
+
+/* IS INVALID */
+
+.input .input-group > span {
+    display: none;
+}
+
+.input .input-group.is-invalid > span {
+    display: inline-block;
+    padding-top: 0.5rem;
+    font-weight: 400;
+    font-size: 0.875rem;
+    font-style: italic;
+    color: var(--light-red);
+}
+
+.input .input-group.is-invalid > label span {
+    color: var(--light-red);
+
+}
+.input .input-group.is-invalid > input{
+    border-color: var(--light-red);
+}
+
+/* DIVIDER */
+.divider {
+    width: 100%;
+    position: relative;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.divider .button-icon {
+    position: absolute;
+    right: 0;
+    top: -3rem;
     display: flex;
     justify-content: center;
     width: 6rem;
     height: 6rem;
     background-color: var(--purple);
     border-radius: 3rem;
+    border-style: none;
 }
 
-.divider .icon-arrow img {
+.divider .button-icon:hover {
+    background-color: var(--off-black);
+    cursor: pointer;
+}
+
+.divider .button-icon img {
     width: 2.75rem;
     height: 2.75rem;
     margin: auto;
+}
+
+.output-group {
+    font-size: 6.25rem;
+    letter-spacing: 0.188rem;
+    /* font-weight: 700; */
+    font-style: italic;
+    margin:0;
+    padding:0;
+    line-height: 1;
+    color: var(--off-black);
+  }
+
+.output-group span {
+    color: var(--purple);
 }
 

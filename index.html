@@ -20,25 +20,29 @@
   <div class="container">
     <main class="card">
       <div class="input">
-        <form action="/" aria-label="input your birth date">
-          <div class="input-group">
+        <form action="/" id="age-calculator" aria-label="input your birth date">
+          <div class="input-group is-invalid">
             <label for="day">DAY</label>
-            <input type="text" id="day" name="day" placeholder="DD" value="" aria-label="input your birth day">
+            <input type="text" id="day" name="day" placeholder="DD" value="" aria-label="input your birth day" autofocus inputmode="numeric">
+            <span>This field is required</span>
           </div>
           <div class="input-group">
             <label for="month">MONTH</label>
-            <input type="text" id="month" name="month" placeholder="MM" value="" aria-label="input your birth month">
+            <input type="text" id="month" name="month" placeholder="MM" value="" aria-label="input your birth month" inputmode="numeric">
+            <span>This field is required</span>
           </div>
           <div class="input-group">
             <label for="year">YEAR</label>
-            <input type="text" id="year" name="year" placeholder="YY" value="" aria-label="input your birth year">
+            <input type="text" id="year" name="year" placeholder="YY" value="" aria-label="input your birth year" inputmode="numeric">
+            <span>This field is required</span>
           </div>
         </form>  
       </div>
       <div class="divider">
-        <div class="icon-arrow">
+        <!-- <hr> -->
+        <button type="submit" form="age-calculator" class="button-icon" >
           <img src="/assets/images/icon-arrow.svg" alt="">    
-        </div>
+        </button>
       </div>
       <div class="output">
         <div class="output-group">
