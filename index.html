@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  <link rel="stylesheet" href="/dist/style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="./dist/style.css">
   <script defer src="/dist/script.js"></script>
   <title>Frontend Mentor | Age calculator app</title>
 
@@ -19,27 +19,24 @@
   <h1 class="visually-hidden">Age Calculator App</h1>
   <div class="container">
     <main class="card">
-      <div class="input">
-        <form action="/" id="age-calculator" aria-label="input your birth date">
-          <div class="input-group is-invalid">
-            <label for="day">DAY</label>
-            <input type="text" id="day" name="day" placeholder="DD" value="" aria-label="input your birth day" autofocus inputmode="numeric">
-            <span>This field is required</span>
-          </div>
-          <div class="input-group">
-            <label for="month">MONTH</label>
-            <input type="text" id="month" name="month" placeholder="MM" value="" aria-label="input your birth month" inputmode="numeric">
-            <span>This field is required</span>
-          </div>
-          <div class="input-group">
-            <label for="year">YEAR</label>
-            <input type="text" id="year" name="year" placeholder="YY" value="" aria-label="input your birth year" inputmode="numeric">
-            <span>This field is required</span>
-          </div>
-        </form>  
-      </div>
+      <form class ="input" action="/" id="age-calculator" aria-label="input your birth date">
+        <div class="input-group is-invalid">
+          <label for="day">DAY</label>
+          <input type="text" id="day" name="day" placeholder="DD" value="" aria-label="input your birth day" autofocus inputmode="numeric">
+          <span>This field is required</span>
+        </div>
+        <div class="input-group">
+          <label for="month">MONTH</label>
+          <input type="text" id="month" name="month" placeholder="MM" value="" aria-label="input your birth month" inputmode="numeric">
+          <span>This field is required</span>
+        </div>
+        <div class="input-group">
+          <label for="year">YEAR</label>
+          <input type="text" id="year" name="year" placeholder="YY" value="" aria-label="input your birth year" inputmode="numeric">
+          <span>This field is required</span>
+        </div>
+      </form>  
       <div class="divider">
-        <!-- <hr> -->
         <button type="submit" form="age-calculator" class="button-icon" >
           <img src="/assets/images/icon-arrow.svg" alt="">    
         </button>
