@@ -263,6 +263,19 @@ input[type=number] {
     color: var(--purple);
 }
 
+.attribution { 
+    position: sticky;
+    bottom: 1rem;
+    font-size: 11px; 
+    text-align: center; }
+.attribution a { 
+    color:var(--purple) }
+
+@media (max-height: 35em) {
+    .attribution {
+        display: none;
+    }
+}
 @media (min-width: 62em) {
     .card {
         width: 52.5rem;
