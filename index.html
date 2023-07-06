@@ -10,13 +10,16 @@
   <title>Frontend Mentor | Age calculator app</title>
 </head>
 <body>
-  <h1 class="visually-hidden">Age Calculator App</h1>
+  <header>
+    <h1 class="visually-hidden">Age Calculator App</h1>
+  </header>
+
   <div class="container">
     <main class="card">
       <form class ="input" action="/" id="age-calculator" aria-label="input your birth date">
         <div class="input-group">
           <label for="day">DAY</label>
-          <input type="number" id="day" name="day" placeholder="DD" value="" aria-label="input your birth day" autofocus inputmode="numeric">
+          <input type="number" id="day" name="day" placeholder="DD" value="" aria-label="input your birth day" inputmode="numeric" autofocus>
           <span>This field is required</span>
         </div>
         <div class="input-group">
@@ -31,7 +34,7 @@
         </div>
       </form>  
       <div class="divider">
-        <button type="submit" form="age-calculator" class="button-icon" >
+        <button type="submit" form="age-calculator" class="button-icon" aria-label="calculate age">
           <img src="/assets/images/icon-arrow.svg" alt="">    
         </button>
       </div>
@@ -45,9 +48,9 @@
     </main>
   </div>
   
-  <div class="attribution">
+  <footer class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="https://github.com/reqayasa/fmr-age-calculator-app">Reqayasa</a>.
-  </div>
+  </footer>
 </body>
 </html>
