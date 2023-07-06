@@ -7,123 +7,122 @@ const dayOutput = document.getElementById('output-days');
 const monthOutput = document.getElementById('output-months');
 const yearOutput = document.getElementById('output-years');
 
-
 const dayErrorMsg = "Must be a valid day";
 const monthErrorMsg = "Must be a valid month";
 const yearErrorMsg = "Must be in the past";
 const emptyErrorMsg = "This field is required";
 const wholeErrorMsg = "Must be a valid date";
 
-const dateObj = new Date()
+class DateObj {
+    constructor(day, month, year) {
+        this.day     = parseInt(day, 10);
+        this.month   = parseInt(month, 10);
+        this.year    = parseInt(year, 10);
+    }
+
+    get julianDayNumber() {
+        return getJulianDayNumber(this.day, this.month, this.year);
+    }
+
+    // get date string in format yyyymmdd withoute dash so it behave as integer not string
+    get dateInt() {
+        return (this.year * 10000) + (this.month * 100) + this.day;
+    }
+}
+
+const todayDate = new Date();
+
+const today = new DateObj(todayDate.getDate(),  todayDate.getMonth() + 1, todayDate.getFullYear())
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    let day = parseInt(dayInput.value, 10);
-    let month = parseInt(monthInput.value, 10)
-    let year = parseInt(yearInput.value, 10);
-
-    let birthDate = {
-        day: day,
-        month: month,
-        year: year,
-    }
-
-    const today = new Date();
-    let dayToday = today.getDate();
-    let monthToday = today.getMonth();
-    let yearToday = today.getFullYear();
-    let todayDate = {
-        day: dayToday,
-        month: monthToday,
-        year: yearToday,
-    }
-    
     resetError(dayInput, monthInput, yearInput);
     
-    let isValidForm = formValidation(day, month, year);
-
+    let isValidForm = formValidation(dayInput, monthInput, yearInput);
     if(! isValidForm)
         return;
 
-    let isValidDate = dateValidation(day, month, year);
+    let birthDate = new DateObj(dayInput.value, monthInput.value, yearInput.value);
 
+    let isValidDate = dateValidation(birthDate);
     if(! isValidDate)
-        return setError([dayInput, monthInput, yearInput], wholeErrorMsg, true)
+        return
     
-    let ageYear = yearToday - year;
-    let ageMonth = monthToday - month;
-    let ageDay = dayToday - day;
+    // calculate age.
+    let ageYear = today.year - birthDate.year;
+    let ageMonth = today.month - birthDate.month;
+    let ageDay = today.day - birthDate.day;
     
     if(ageDay < 0) {
-        ageDay = day - dayToday;
+        ageDay = birthDate.day - today.day;
         ageMonth--
     }
 
     if(ageMonth < 0) {
-        ageMonth = 12,
+        ageMonth = (-ageMonth) % 12,
         ageYear--
     }
 
     showResult(yearOutput, ageYear, 35);
     showResult(monthOutput, ageMonth, 125);
     showResult(dayOutput, ageDay, 75);
-    // calculateAge(birthDate, todayDate)
 } )
 
 function showResult(htmlDOM, number, delay){
     let counts = setInterval(updated, delay);
     let upto = 0;
+    htmlDOM.textContent = 0;
     function updated() {
         let count = htmlDOM;
-        count.innerHTML = ++upto;
-        if (upto === number) {
+        if (upto < number) {
+            count.textContent = ++upto;
+        } else 
             clearInterval(counts);
-        }
     }
 }
 
-function calculateAge(birthDate, todayDate) {
-    let birthJulianDayNumber = getJulianDayNumber(birthDate.day, birthDate.month, birthDate.year);
-    let todayJulianDayNumber = getJulianDayNumber(todayDate.day, todayDate.date, todayDate.year);
+// function calculateAge(birthDate, todayDate) {
+//     let birthJulianDayNumber = birthDate.julianDayNumber;
+//     let todayJulianDayNumber = todayDate.julianDayNumber;
 
-    return todayJulianDayNumber - birthJulianDayNumber
-}
+//     // return age in days
+//     return todayJulianDayNumber - birthJulianDayNumber
+// }
 
 function formValidation(day, month, year) {
     let countNotValid = 0;
-    const currentYear = dateObj.getFullYear();
 
-    if(dayInput.value == null || dayInput.value == "") {
-        setError(dayInput, emptyErrorMsg);
+    if(day.value == null || day.value == "") {
+        setError(day, emptyErrorMsg);
         countNotValid++;
-    } else if (isNaN(day)) {
-        setError(dayInput, dayErrorMsg);
+    } else if (isNaN(day.value)) {
+        setError(day, dayErrorMsg);
         countNotValid++;
-    }  else if (day < 1 || day > 31) {
-        setError(dayInput, dayErrorMsg);
+    }  else if (day.value < 1 || day.value > 31) {
+        setError(day, dayErrorMsg);
         countNotValid++
     }
 
-    if(monthInput.value == null || monthInput.value == "") {
-        setError(monthInput, emptyErrorMsg);
+    if(month.value == null || month.value == "") {
+        setError(month, emptyErrorMsg);
         countNotValid++;
-    } else if (isNaN(month)) {
-        setError(monthInput, monthErrorMsg);
+    } else if (isNaN(month.value)) {
+        setError(month, monthErrorMsg);
         countNotValid++;
-    }  else if (month < 1 || month > 12) {
-        setError(monthInput, monthErrorMsg);
+    }  else if (month.value < 1 || month.value > 12) {
+        setError(month, monthErrorMsg);
         countNotValid++;
     }
 
-    if(yearInput.value == null || yearInput.value == "") {
-        setError(yearInput, emptyErrorMsg);
+    if(year.value == null || year.value == "") {
+        setError(year, emptyErrorMsg);
         countNotValid++;
-    } else if (isNaN(year)) {
-        setError(yearInput, yearErrorMsg);
+    } else if (isNaN(year.value)) {
+        setError(year, yearErrorMsg);
         countNotValid++;
-    }  else if (year > currentYear) {
-        setError(yearInput, yearErrorMsg);
+    }  else if (year.value > today.year) {
+        setError(year, yearErrorMsg);
         countNotValid++;
     }
 
@@ -133,16 +132,21 @@ function formValidation(day, month, year) {
         return true;
 }
 
-function dateValidation(day, month, year) {
-    let originDateString = (year * 10000) + (month * 100) + day;
+function dateValidation(dateObj) {
+    let dateInt = dateObj.dateInt;
+    let getDateInt = getCalenderDate(dateObj.julianDayNumber)
 
-    let julianDayNumber = getJulianDayNumber(day, month, year);
-    let reverseStepDateString = getCalenderDate(julianDayNumber).dateString();
-
-    if(originDateString == reverseStepDateString)
-        return true;
-    else
+    if(dateObj.dateInt != getCalenderDate(dateObj.julianDayNumber)) {
+        setError([dayInput, monthInput, yearInput], wholeErrorMsg, true);
         return false;
+    }
+    
+    if(dateObj.dateInt >= today.dateInt) {
+        setError([dayInput, monthInput, yearInput], yearErrorMsgMsg, true);
+        return false;
+    }
+
+    return true;
 }
 
 function setError(input, message, setToAll = false) {
@@ -181,17 +185,17 @@ function getJulianDayNumber (day, month, year) {
     }
 
     // Date int with format YYYYMMDD for easy comparation
-    let dateString = (year * 10000) + (month * 100) + day
+    let dateInt = (year * 10000) + (month * 100) + day
 
     let a = Math.trunc(y / 100);
     let b = 0;
 
     // if Gregorian Calender (after 15 Oct 1582 = ) calculate b.
-    if(dateString >= 15821015)
+    if(dateInt >= 15821015)
         b = 2 - a + Math.trunc(a / 4);
 
-    // This date not exit
-    if(dateString < 15821015 && dateString > 15821004)
+    // This date not exist.
+    if(dateInt < 15821015 && dateInt > 15821004)
         setError([dayInput, monthInput, yearInput], wholeErrorMsg, true)
 
     let julianDayNumber = Math.trunc(365.25 * (y + 4716)) + Math.trunc(30.6001 * (m + 1)) + d + b - 1524.5;
@@ -229,18 +233,9 @@ function getCalenderDate(julianDayNumber) {
         thisMonth = e - 13;
 
     if(thisMonth > 2)
-        thisYear = c- 4716;
+        thisYear = c - 4716;
     else
         thisYear = c - 4715;
 
-    let calenderDate = {
-        day: thisDay,
-        month: thisMonth,
-        year: thisYear,
-        dateString: function() {
-            return ((thisYear * 10000) + (thisMonth * 100) + thisDay);
-        }
-    }
-
-    return calenderDate;
+    return ((thisYear * 10000) + (thisMonth * 100) + thisDay);
 }
