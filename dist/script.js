@@ -142,7 +142,7 @@ function dateValidation(dateObj) {
     }
     
     if(dateObj.dateInt >= today.dateInt) {
-        setError([dayInput, monthInput, yearInput], yearErrorMsgMsg, true);
+        setError([dayInput, monthInput, yearInput], yearErrorMsg, true);
         return false;
     }
 
