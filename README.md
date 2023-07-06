@@ -68,15 +68,13 @@ Then I learned to create objects, use classes, access the DOM, perform form vali
 
 ### Resources
 
-[Astronomical Algorithms - Jean Meeus](https://www.agopax.it/Libri_astronomia/pdf/Astronomical%20Algorithms.pdf)
-[Julian Day - wikipedia](https://en.wikipedia.org/wiki/Julian_day)
-[Animated counter](https://www.geeksforgeeks.org/how-to-make-animated-counter-using-javascript/)
+[Astronomical Algorithms - Jean Meeus](https://www.agopax.it/Libri_astronomia/pdf/Astronomical%20Algorithms.pdf)  
+[Julian Day - wikipedia](https://en.wikipedia.org/wiki/Julian_day)  
+[Animated counter](https://www.geeksforgeeks.org/how-to-make-animated-counter-using-javascript/)  
 
 ### Continued development
 
 Because I did the Julian Day Number here, so I can calculate how many days even seconds in the past up to 4713 BC, it could be interesting if I could show the days or minutes that have passed since I was born.
-
-https://www.geeksforgeeks.org/how-to-make-animated-counter-using-javascript/
 
 ## Author
 
