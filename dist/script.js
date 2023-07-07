@@ -55,12 +55,12 @@ form.addEventListener('submit', (e) => {
     let ageDay = today.day - birthDate.day;
     
     if(ageDay < 0) {
-        ageDay = birthDate.day - today.day;
+        ageDay = 30 - ageDay;
         ageMonth--
     }
 
     if(ageMonth < 0) {
-        ageMonth = (-ageMonth) % 12,
+        ageMonth = 12 + ageMonth,
         ageYear--
     }
 
@@ -81,14 +81,6 @@ function showResult(htmlDOM, number, delay){
             clearInterval(counts);
     }
 }
-
-// function calculateAge(birthDate, todayDate) {
-//     let birthJulianDayNumber = birthDate.julianDayNumber;
-//     let todayJulianDayNumber = todayDate.julianDayNumber;
-
-//     // return age in days
-//     return todayJulianDayNumber - birthJulianDayNumber
-// }
 
 function formValidation(day, month, year) {
     let countNotValid = 0;
@@ -133,10 +125,7 @@ function formValidation(day, month, year) {
 }
 
 function dateValidation(dateObj) {
-    let dateInt = dateObj.dateInt;
-    let getDateInt = getCalenderDate(dateObj.julianDayNumber)
-
-    if(dateObj.dateInt != getCalenderDate(dateObj.julianDayNumber)) {
+    if(dateObj.dateInt != getCalenderDate(dateObj.julianDayNumber).dateInt) {
         setError([dayInput, monthInput, yearInput], wholeErrorMsg, true);
         return false;
     }
@@ -237,5 +226,7 @@ function getCalenderDate(julianDayNumber) {
     else
         thisYear = c - 4715;
 
-    return ((thisYear * 10000) + (thisMonth * 100) + thisDay);
+    let calenderDate = new DateObj(thisDay, thisMonth, thisYear);
+
+    return calenderDate;
 }
